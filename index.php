@@ -10,7 +10,7 @@ if (!mysql_connect($db_host . ":" . $db_port, $db_user, $db_password)) {
     exit;
 }
 
-$sql = "SHOW TABLES FROM $dbname";
+$sql = "SHOW TABLES FROM $db_name";
 $result = mysql_query($sql);
 
 if (!$result) {
