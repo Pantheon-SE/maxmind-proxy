@@ -18,11 +18,14 @@ if (!$result) {
     echo 'MySQL Error: ' . mysql_error();
     exit;
 }
-
+?>
+<h1>Here are the database tables</h1>
+<ul>
+<?php
 while ($row = mysql_fetch_row($result)) {
-    echo "Table: {$row[0]}\n";
+    echo "<li>Table: {$row[0]}</li>\n";
 }
 
 mysql_free_result($result);
 ?>
-
+</ul>
