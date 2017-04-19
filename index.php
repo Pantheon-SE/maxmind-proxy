@@ -5,7 +5,7 @@ $db_user = $_ENV["DB_USER"];
 $db_port = $_ENV["DB_PORT"];
 $db_password = $_ENV["DB_PASSWORD"];
 
-if (!mysql_connect($db_host, $db_user, $db_password)) {
+if (!mysql_connect($db_host . ":" . $db_port, $db_user, $db_password)) {
     echo 'Could not connect to mysql';
     exit;
 }
