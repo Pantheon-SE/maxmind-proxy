@@ -1,0 +1,10 @@
+# Put overrides to your pantheon.upstream.yml file here.
+# For more information, see: https://pantheon.io/docs/pantheon-yml/
+api_version: 1
+
+# Experimental
+environment:
+  docroot: public
+
+# Integrated Composer
+build_step: true
