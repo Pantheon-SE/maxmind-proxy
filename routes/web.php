@@ -1,5 +1,7 @@
 <?php
 
+use GeoIp2\Database\Reader;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -15,4 +17,15 @@
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
+});
+
+
+$router->get('/asn/{ip}', function ($ip) use ($router) {
+    // This creates the Reader object, which should be reused across
+    // lookups.
+    $reader = new Reader('../geolite/GeoLite2-ASN.mmdb');
+
+    $record = $reader->isp($ip);
+
+    return $record;
 });
