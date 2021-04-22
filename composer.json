@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "flipbox/lumen-generator": "^8.2",
         "geoip2/geoip2": "~2.0",
         "illuminate/redis": "^8.37",
         "laravel/lumen-framework": "^8.0"

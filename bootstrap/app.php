@@ -28,7 +28,6 @@ if (!empty($_ENV['PANTHEON_ENVIRONMENT'])) {
     define('APP_NAME', 'Maxmind API');
     define('APP_ENV', 'local');
     define('APP_KEY', 'maxmindapi');
-    define('APP_URL', $_SERVER['HTTP_HOST']);
 }
 
 
@@ -125,6 +124,7 @@ $app->configure('app');
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
