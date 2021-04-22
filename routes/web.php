@@ -25,7 +25,7 @@ $router->get('/asn/{ip}', function ($ip) use ($router) {
     // lookups.
     $reader = new Reader('../geolite/GeoLite2-ASN.mmdb');
 
-    $record = $reader->isp($ip);
+    $record = $reader->asn($ip);
 
     return $record;
 });
