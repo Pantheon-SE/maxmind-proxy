@@ -3,26 +3,33 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Add Pantheon configuration variables.
-// App
-$pantheon_url = "https://" . $_ENV['PANTHEON_ENVIRONMENT'] . "-" . $_ENV['PANTHEON_SITE_NAME'] . ".pantheonsite.io";
-define('APP_NAME', $_ENV['PANTHEON_SITE_NAME']);
-define('APP_ENV', $_ENV['PANTHEON_ENVIRONMENT']);
-define('APP_KEY', $_ENV['PANTHEON_SITE']);
-if (in_array($_ENV['PANTHEON_ENVIRONMENT'], ['test', 'live'])) {
-    define('APP_DEBUG', TRUE);
+if (!empty($_ENV['PANTHEON_ENVIRONMENT'])) {
+    // App
+    $pantheon_url = "https://" . $_ENV['PANTHEON_ENVIRONMENT'] . "-" . $_ENV['PANTHEON_SITE_NAME'] . ".pantheonsite.io";
+    define('APP_NAME', $_ENV['PANTHEON_SITE_NAME']);
+    define('APP_ENV', $_ENV['PANTHEON_ENVIRONMENT']);
+    define('APP_KEY', $_ENV['PANTHEON_SITE']);
+    if (in_array($_ENV['PANTHEON_ENVIRONMENT'], ['test', 'live'])) {
+        define('APP_DEBUG', TRUE);
+    }
+    define('APP_URL', $pantheon_url);
+    // Database
+    define('DB_HOST', $_ENV['DB_HOST']);
+    define('DB_PORT', $_ENV['DB_PORT']);
+    define('DB_DATABASE', $_ENV['DB_NAME']);
+    define('DB_USERNAME', $_ENV['DB_USER']);
+    define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+    // Cache
+    define('CACHE_DRIVER', 'redis');
+    // [CACHE_HOST]
+    // [CACHE_PORT]
+    // [CACHE_PASSWORD]
+} else {
+    define('APP_NAME', 'Maxmind API');
+    define('APP_ENV', 'local');
+    define('APP_KEY', 'maxmindapi');
+    define('APP_URL', $_SERVER['HTTP_HOST']);
 }
-define('APP_URL', $pantheon_url);
-// Database
-define('DB_HOST', $_ENV['DB_HOST']);
-define('DB_PORT', $_ENV['DB_PORT']);
-define('DB_DATABASE', $_ENV['DB_NAME']);
-define('DB_USERNAME', $_ENV['DB_USER']);
-define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
-// Cache
-define('CACHE_DRIVER', 'redis');
-// [CACHE_HOST] => 10.128.0.79
-// [CACHE_PORT] => 22824
-// [CACHE_PASSWORD] => 3cefc2ab6fe34a1cb452e1074519ce1a
 
 
 

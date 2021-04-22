@@ -17,7 +17,7 @@ use GeoIp2\Database\Reader;
 
 function cacheResponse($content)
 {
-    return response($content)->header('Cache-Control', 'max-age=3600');
+    return response($content)->header->set('Cache-Control', 'max-age=3600');
 }
 
 $router->get('/', function () use ($router) {
