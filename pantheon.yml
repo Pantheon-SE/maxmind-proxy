@@ -10,3 +10,6 @@ build_step: true
 
 # PHP Version
 php_version: 7.4
+
+# HSTS Configuration
+enforce_https: transitional
