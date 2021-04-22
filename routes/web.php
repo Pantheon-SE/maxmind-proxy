@@ -15,10 +15,7 @@ use GeoIp2\Database\Reader;
 |
 */
 
-function cacheResponse($content)
-{
-    return response($content)->header->set('Cache-Control', 'max-age=3600');
-}
+
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
@@ -27,18 +24,15 @@ $router->get('/', function () use ($router) {
 
 $router->get('/asn/{ip}', function ($ip) use ($router) {
     $reader = new Reader('../geolite/GeoLite2-ASN.mmdb');
-    $record = $reader->asn($ip);
-    return cacheResponse($record);
+    return $reader->asn($ip);
 });
 
 $router->get('/city/{ip}', function ($ip) use ($router) {
     $reader = new Reader('../geolite/GeoLite2-City.mmdb');
-    $record = $reader->city($ip);
-    return cacheResponse($record);
+    return $reader->city($ip);
 });
 
 $router->get('/country/{ip}', function ($ip) use ($router) {
     $reader = new Reader('../geolite/GeoLite2-Country.mmdb');
-    $record = $reader->country($ip);
-    return cacheResponse($record);
+    return $reader->country($ip);
 });
