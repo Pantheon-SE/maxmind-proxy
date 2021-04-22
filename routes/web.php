@@ -2,7 +2,9 @@
 
 use GeoIp2\Database\Reader;
 
-/** @var \Laravel\Lumen\Routing\Router $router */
+/** 
+ * @var \Laravel\Lumen\Routing\Router $router
+ */
 
 /*
 |--------------------------------------------------------------------------
@@ -14,8 +16,6 @@ use GeoIp2\Database\Reader;
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
