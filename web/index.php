@@ -19,12 +19,12 @@ Flight::route('/asn/@ip', function($ip){
 
 Flight::route('/city/@ip', function($ip){
     $reader = new Reader('../geolite/GeoLite2-City.mmdb');
-    Flight::json($reader->asn($ip));
+    Flight::json($reader->city($ip));
 });
 
 Flight::route('/country/@ip', function($ip){
     $reader = new Reader('../geolite/GeoLite2-Country.mmdb');
-    Flight::json($reader->asn($ip));
+    Flight::json($reader->country($ip));
 });
 
 Flight::start();
