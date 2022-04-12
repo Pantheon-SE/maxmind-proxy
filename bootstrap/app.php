@@ -102,9 +102,9 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\CacheAll::class
-// ]);
+$app->middleware([
+    App\Http\Middleware\CacheAll::class
+]);
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,
