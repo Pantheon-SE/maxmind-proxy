@@ -5,7 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use GeoIp2\Database\Reader;
 
 // Cache tf out of this.
-header("cache-control:public,max-age=2594000");
+header("Cache-Control: public, max-age=2592000");
 
 Flight::route('/', function(){
     echo "Try an API path!";
