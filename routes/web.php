@@ -25,14 +25,14 @@ $router->get('/', function () use ($router) {
 $router->get('/asn/{ip}', function ($ip) use ($router) {
     $reader = new Reader('../geolite/GeoLite2-ASN.mmdb');
     return $reader->asn($ip);
-});
+})->middleware('cache.headers:public,max-age=2592000');
 
 $router->get('/city/{ip}', function ($ip) use ($router) {
     $reader = new Reader('../geolite/GeoLite2-City.mmdb');
     return $reader->city($ip);
-});
+})->middleware('cache.headers:public,max-age=2592000');
 
 $router->get('/country/{ip}', function ($ip) use ($router) {
     $reader = new Reader('../geolite/GeoLite2-Country.mmdb');
     return $reader->country($ip);
-});
+})->middleware('cache.headers:public,max-age=2592000');
