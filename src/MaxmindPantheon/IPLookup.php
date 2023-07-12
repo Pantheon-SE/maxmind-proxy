@@ -26,16 +26,16 @@ class IPLookup
         $asn = $this->getASN();
         $city = $this->getCity();
         return [
-            'ip_address' => $asn['ip_address'],
-            'autonomous_system_number' => $asn['autonomous_system_number'],
-            'autonomous_system_organization' => $asn['autonomous_system_organization'],
-            'city' => $city['city']['names']['en'],
-            'state' => $city['subdivisions'][0]['names']['en'],
-            'country_iso' => $city['country']['iso_code'],
-            'country' => $city['country']['names']['en'],
-            'group' => $city['continent']['names']['en'],
-            'latitude' => $city['location']['latitude'],
-            'longitude' => $city['location']['longitude'],
+            'ip_address' => $asn['ip_address'] ?? '',
+            'autonomous_system_number' => $asn['autonomous_system_number'] ?? '',
+            'autonomous_system_organization' => $asn['autonomous_system_organization'] ?? '',
+            'city' => $city['city']['names']['en'] ?? '',
+            'state' => $city['subdivisions'][0]['names']['en'] ?? '',
+            'country_iso' => $city['country']['iso_code'] ?? '',
+            'country' => $city['country']['names']['en'] ?? '',
+            'group' => $city['continent']['names']['en'] ?? '',
+            'latitude' => $city['location']['latitude'] ?? '',
+            'longitude' => $city['location']['longitude'] ?? '',
         ];
     }
 
