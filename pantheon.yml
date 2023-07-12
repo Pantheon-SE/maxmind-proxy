@@ -9,7 +9,7 @@ web_docroot: true
 build_step: true
 
 # PHP Version
-php_version: 7.4
+php_version: 8.1
 
 # HSTS Configuration
 enforce_https: transitional

@@ -7,9 +7,10 @@
   "license": "MIT",
   "type": "project",
   "require": {
-    "php": "^7.3|^8.0",
+    "php": "^7.4 || ^8",
     "geoip2/geoip2": "~2.0",
-    "mikecao/flight": "^2.0"
+    "mikecao/flight": "^2.0",
+    "tronovav/geoip2-update": "^2.1"
   },
   "config": {
     "preferred-install": "dist",
@@ -17,5 +18,21 @@
     "optimize-autoloader": true
   },
   "minimum-stability": "stable",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "MaxmindPantheon\\": "src/MaxmindPantheon"
+    }
+  },
+  "scripts": {
+    "post-update-cmd": [
+      "tronovav\\GeoIP2Update\\ComposerClient::run"
+    ]
+  },
+  "extra": {
+    "tronovav\\GeoIP2Update\\ComposerClient::run": {
+      "dir": "./src/Data",
+      "geoipConfFile": "./private/GeoIP.conf"
+    }
+  }
 }

@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "82d6ae599ed47f44c05be1c2032cc80d",
+    "content-hash": "2ed99903c7ee925d3947986493b3059d",
     "packages": [
         {
             "name": "composer/ca-bundle",
-            "version": "1.3.1",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "4c679186f2aca4ab6a0f1b0b9cf9252decb44d0b"
+                "reference": "90d087e988ff194065333d16bc5cf649872d9cdb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/4c679186f2aca4ab6a0f1b0b9cf9252decb44d0b",
-                "reference": "4c679186f2aca4ab6a0f1b0b9cf9252decb44d0b",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/90d087e988ff194065333d16bc5cf649872d9cdb",
+                "reference": "90d087e988ff194065333d16bc5cf649872d9cdb",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.3.1"
+                "source": "https://github.com/composer/ca-bundle/tree/1.3.6"
             },
             "funding": [
                 {
@@ -80,20 +80,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-10-28T20:44:15+00:00"
+            "time": "2023-06-06T12:02:59+00:00"
         },
         {
             "name": "geoip2/geoip2",
-            "version": "v2.12.2",
+            "version": "v2.13.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/maxmind/GeoIP2-php.git",
-                "reference": "83adb44ac4b9553d36b579a14673ed124583082f"
+                "url": "git@github.com:maxmind/GeoIP2-php.git",
+                "reference": "6a41d8fbd6b90052bc34dff3b4252d0f88067b23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/maxmind/GeoIP2-php/zipball/83adb44ac4b9553d36b579a14673ed124583082f",
-                "reference": "83adb44ac4b9553d36b579a14673ed124583082f",
+                "url": "https://api.github.com/repos/maxmind/GeoIP2-php/zipball/6a41d8fbd6b90052bc34dff3b4252d0f88067b23",
+                "reference": "6a41d8fbd6b90052bc34dff3b4252d0f88067b23",
                 "shasum": ""
             },
             "require": {
@@ -134,11 +134,7 @@
                 "geolocation",
                 "maxmind"
             ],
-            "support": {
-                "issues": "https://github.com/maxmind/GeoIP2-php/issues",
-                "source": "https://github.com/maxmind/GeoIP2-php/tree/v2.12.2"
-            },
-            "time": "2021-11-30T18:15:25+00:00"
+            "time": "2022-08-05T20:32:58+00:00"
         },
         {
             "name": "maxmind-db/reader",
@@ -303,6 +299,68 @@
                 "source": "https://github.com/mikecao/flight/tree/v2.0.1"
             },
             "time": "2021-12-19T03:03:01+00:00"
+        },
+        {
+            "name": "tronovav/geoip2-update",
+            "version": "v2.1.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tronovav/geoip2-update.git",
+                "reference": "6b91582eb11d4c39cfe66b3178ac0a6c67839cf9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tronovav/geoip2-update/zipball/6b91582eb11d4c39cfe66b3178ac0a6c67839cf9",
+                "reference": "6b91582eb11d4c39cfe66b3178ac0a6c67839cf9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3"
+            },
+            "suggest": {
+                "ext-zip": "Required for updating the CSV databases."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "tronovav\\GeoIP2Update\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrey Tronov",
+                    "email": "newtronov@gmail.com"
+                }
+            ],
+            "description": "Update GeoIP2/GeoLite2 databases from your script, program or via composer.",
+            "keywords": [
+                "geoip",
+                "geoip2",
+                "geolite2",
+                "geolocation",
+                "maxmind"
+            ],
+            "support": {
+                "email": "newtronov@gmail.com",
+                "issues": "https://github.com/tronovav/geoip2-update/issues",
+                "source": "https://github.com/tronovav/geoip2-update/tree/v2.1.24"
+            },
+            "funding": [
+                {
+                    "url": "https://donate.stream/tronovav",
+                    "type": "other"
+                },
+                {
+                    "url": "https://yoomoney.ru/to/410016198845596",
+                    "type": "other"
+                }
+            ],
+            "time": "2023-03-13T11:43:07+00:00"
         }
     ],
     "packages-dev": [],
@@ -312,7 +370,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.3|^8.0"
+        "php": "^7.4 || ^8"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"
