@@ -2,6 +2,7 @@
 
 namespace MaxmindPantheon;
 
+use Exception;
 use GeoIp2\Database\Reader;
 use GeoIp2\Exception\AddressNotFoundException;
 use MaxMind\Db\Reader\InvalidDatabaseException;
@@ -16,15 +17,21 @@ class IPLookup
     }
 
     /**
-     * Return common data.
+     * Return data expected by Datastudio connector.
      * @return array
-     * @throws AddressNotFoundException
-     * @throws InvalidDatabaseException
+     * @throws Exception
      */
-    public function getCommon(): array
+    public function getDatastudio(): array
     {
-        $asn = $this->getASN();
-        $city = $this->getCity();
+
+        try {
+            $asn = $this->getASN();
+            $city = $this->getCity();
+        } catch (Exception $e) {
+            $asn = [];
+            $city = [];
+        }
+
         return [
             'ip_address' => $asn['ip_address'] ?? '',
             'autonomous_system_number' => $asn['autonomous_system_number'] ?? '',

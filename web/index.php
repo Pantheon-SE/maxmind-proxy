@@ -6,7 +6,7 @@ use MaxmindPantheon\IPLookup;
 use flight\net\Request;
 
 // Check if IP is supplied.
-Flight::before('start', function(&$params, &$output){
+Flight::before('start', function(){
     $request = Flight::request();
     $ip = get_ip($request);
     $url_parts = parse_url($request->url);
@@ -81,7 +81,7 @@ Flight::route('POST|GET /datastudio', function () {
     $ip = get_ip(Flight::request());
     $max = new IPLookup($ip);
     try {
-        $asn = $max->getCommon();
+        $asn = $max->getDatastudio();
         $etag = base64_encode('datastudio' . $ip);
         Flight::etag($etag);
         Flight::json($asn);
