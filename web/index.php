@@ -7,14 +7,14 @@ use flight\net\Request;
 
 // Check if IP is supplied.
 Flight::before('start', function(&$params, &$output){
-    $ip = get_ip(Flight::request());
-    if (empty($ip)) {
+    $request = Flight::request();
+    $ip = get_ip($request);
+    $url_parts = parse_url($request->url);
+    if (empty($ip) && $url_parts['path'] !== '/') {
         Flight::json(['error' => 'No IP argument provided. Please provide an IP address.'], 500);
         exit();
     }
-});
 
-Flight::after('start', function(&$params, &$output){
     // Cache tf out of this.
     header("Cache-Control: public, max-age=2592000, s-maxage=2592000");
     header_remove('x-powered-by');
@@ -32,7 +32,9 @@ Flight::route('POST|GET /asn', function () {
         Flight::etag($etag);
         Flight::json($asn);
     } catch (Exception $e) {
+        header_remove('cache-control');
         Flight::json(['error' => $e->getMessage()]);
+        exit();
     }
 });
 
@@ -48,7 +50,9 @@ Flight::route('POST|GET /city', function () {
         Flight::etag($etag);
         Flight::json($asn);
     } catch (Exception $e) {
+        header_remove('cache-control');
         Flight::json(['error' => $e->getMessage()]);
+        exit();
     }
 });
 
@@ -64,7 +68,9 @@ Flight::route('POST|GET /country', function () {
         Flight::etag($etag);
         Flight::json($asn);
     } catch (Exception $e) {
+        header_remove('cache-control');
         Flight::json(['error' => $e->getMessage()]);
+        exit();
     }
 });
 
@@ -80,13 +86,21 @@ Flight::route('POST|GET /datastudio', function () {
         Flight::etag($etag);
         Flight::json($asn);
     } catch (Exception $e) {
+        header_remove('cache-control');
         Flight::json(['error' => $e->getMessage()]);
+        exit();
     }
 });
 
-Flight::route('*', function ($route) {
-    var_export($route);
-    echo "Try an API path!";
+Flight::route('/*', function () {
+    $protocol = 'http://';
+    if (isset($_SERVER['HTTPS']) &&
+        ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
+        isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+        $protocol = 'https://';
+    }
+    Flight::render('swagger.php', ['url' => $protocol . $_SERVER['HTTP_HOST']]);
 });
 
 /** Get IP address

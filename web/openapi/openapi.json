@@ -1,0 +1,564 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Maxmind IP Lookup API",
+    "description": "API for retrieving IP geolocation data",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://maxmind.pantheon.support"
+    }
+  ],
+  "paths": {
+    "/asn": {
+      "get": {
+        "summary": "Get autonomous system IP data",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ASNData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/country": {
+      "get": {
+        "summary": "Get country-level IP data",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CountryData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/city": {
+      "get": {
+        "summary": "Get city-level IP data",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CityData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/datastudio": {
+      "get": {
+        "summary": "Get IP data for Data Studio Connector",
+        "parameters": [
+          {
+            "name": "ip",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommonData"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ASNData": {
+        "type": "object",
+        "properties": {
+          "autonomous_system_number": {
+            "type": "integer"
+          },
+          "autonomous_system_organization": {
+            "type": "string"
+          },
+          "ip_address": {
+            "type": "string"
+          },
+          "prefix_len": {
+            "type": "integer"
+          }
+        }
+      },
+      "CityData": {
+        "type": "object",
+        "properties": {
+          "city": {
+            "type": "object",
+            "properties": {
+              "geoname_id": {
+                "type": "integer"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "continent": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "geoname_id": {
+                "type": "integer"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "pt-BR": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "country": {
+            "type": "object",
+            "properties": {
+              "geoname_id": {
+                "type": "integer"
+              },
+              "iso_code": {
+                "type": "string"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "pt-BR": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "location": {
+            "type": "object",
+            "properties": {
+              "accuracy_radius": {
+                "type": "integer"
+              },
+              "latitude": {
+                "type": "number"
+              },
+              "longitude": {
+                "type": "number"
+              },
+              "metro_code": {
+                "type": "integer"
+              },
+              "time_zone": {
+                "type": "string"
+              }
+            }
+          },
+          "postal": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              }
+            }
+          },
+          "registered_country": {
+            "type": "object",
+            "properties": {
+              "geoname_id": {
+                "type": "integer"
+              },
+              "iso_code": {
+                "type": "string"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "pt-BR": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "subdivisions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "geoname_id": {
+                  "type": "integer"
+                },
+                "iso_code": {
+                  "type": "string"
+                },
+                "names": {
+                  "type": "object",
+                  "properties": {
+                    "de": {
+                      "type": "string"
+                    },
+                    "en": {
+                      "type": "string"
+                    },
+                    "es": {
+                      "type": "string"
+                    },
+                    "fr": {
+                      "type": "string"
+                    },
+                    "ja": {
+                      "type": "string"
+                    },
+                    "pt-BR": {
+                      "type": "string"
+                    },
+                    "ru": {
+                      "type": "string"
+                    },
+                    "zh-CN": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "traits": {
+            "type": "object",
+            "properties": {
+              "ip_address": {
+                "type": "string"
+              },
+              "prefix_len": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "CountryData": {
+        "type": "object",
+        "properties": {
+          "continent": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "geoname_id": {
+                "type": "integer"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "pt-BR": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "country": {
+            "type": "object",
+            "properties": {
+              "geoname_id": {
+                "type": "integer"
+              },
+              "iso_code": {
+                "type": "string"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "pt-BR": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "registered_country": {
+            "type": "object",
+            "properties": {
+              "geoname_id": {
+                "type": "integer"
+              },
+              "iso_code": {
+                "type": "string"
+              },
+              "names": {
+                "type": "object",
+                "properties": {
+                  "de": {
+                    "type": "string"
+                  },
+                  "en": {
+                    "type": "string"
+                  },
+                  "es": {
+                    "type": "string"
+                  },
+                  "fr": {
+                    "type": "string"
+                  },
+                  "ja": {
+                    "type": "string"
+                  },
+                  "pt-BR": {
+                    "type": "string"
+                  },
+                  "ru": {
+                    "type": "string"
+                  },
+                  "zh-CN": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "traits": {
+            "type": "object",
+            "properties": {
+              "ip_address": {
+                "type": "string"
+              },
+              "prefix_len": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "CommonData": {
+        "type": "object",
+        "properties": {
+          "autonomous_system_number": {
+            "type": "integer"
+          },
+          "autonomous_system_organization": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "continent": {
+            "type": "string"
+          },
+          "country_iso": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "latitude": {
+            "type": "number"
+          },
+          "longitude": {
+            "type": "number"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "error"
+        ]
+      }
+    }
+  }
+}
