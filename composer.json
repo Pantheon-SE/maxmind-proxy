@@ -25,9 +25,9 @@
     }
   },
   "scripts": {
-    "post-update-cmd": [
-      "tronovav\\GeoIP2Update\\ComposerClient::run"
-    ]
+    "post-update-cmd": ["@geoip-update"],
+    "post-install-cmd": ["@geoip-update"],
+    "geoip-update": "tronovav\\GeoIP2Update\\ComposerClient::run"
   },
   "extra": {
     "tronovav\\GeoIP2Update\\ComposerClient::run": {
