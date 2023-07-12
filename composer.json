@@ -31,8 +31,8 @@
   },
   "extra": {
     "tronovav\\GeoIP2Update\\ComposerClient::run": {
-      "dir": "src/Data",
-      "geoipConfFile": "private/GeoIP.conf"
+      "dir": "./data",
+      "geoipConfFile": "./private/GeoIP.conf"
     }
   }
 }

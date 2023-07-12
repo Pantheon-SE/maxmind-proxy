@@ -46,7 +46,7 @@ class IPLookup
      */
     public function getASN(): array
     {
-        $asnReader = new Reader(__DIR__ . '/../Data/GeoLite2-ASN/GeoLite2-ASN.mmdb');
+        $asnReader = new Reader(__DIR__ . '/../../data/GeoLite2-ASN/GeoLite2-ASN.mmdb');
         $asnData = $asnReader->asn($this->ip);
         return $asnData->jsonSerialize();
     }
@@ -58,7 +58,7 @@ class IPLookup
      */
     public function getCity(): array
     {
-        $cityReader = new Reader(__DIR__ . '/../Data/GeoLite2-City/GeoLite2-City.mmdb');
+        $cityReader = new Reader(__DIR__ . '/../../data/GeoLite2-City/GeoLite2-City.mmdb');
         $cityData = $cityReader->city($this->ip);
         return $cityData->jsonSerialize();
     }
@@ -70,7 +70,7 @@ class IPLookup
      */
     public function getCountry(): array
     {
-        $countryReader = new Reader(__DIR__ . '/../Data/GeoLite2-Country/GeoLite2-Country.mmdb');
+        $countryReader = new Reader(__DIR__ . '/../../data/GeoLite2-Country/GeoLite2-Country.mmdb');
         $countryData = $countryReader->country($this->ip);
         return $countryData->jsonSerialize();
     }
