@@ -1,7 +1,5 @@
 <?php
 
-require '../../vendor/autoload.php';
-
 // Transform JSON
 $openapi = json_decode(file_get_contents(__DIR__ . '/openapi.json'), true);
 
@@ -16,5 +14,8 @@ if (isset($_SERVER['HTTPS']) &&
 
 // Replace URL
 $openapi['servers'][0]['url'] = $protocol . $_SERVER['HTTP_HOST'];
-Flight::json($openapi);
-Flight::start();
+
+// Serve JSON
+header('Content-Type: application/json');
+header("Cache-Control: public, max-age=2592000, s-maxage=2592000");
+echo json_encode($openapi);
