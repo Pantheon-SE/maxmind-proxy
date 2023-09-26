@@ -72,7 +72,7 @@
         </div>
         <div class="row">
             <table id="mtrTable" class="table">
-                <thead class="table-dark">>
+                <thead class="table-dark">
                     <tr>
                         <th>Step</th>
                         <th>IP</th>
