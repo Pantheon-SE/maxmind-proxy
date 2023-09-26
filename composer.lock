@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "composer/ca-bundle",
-            "version": "1.3.6",
+            "version": "1.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "90d087e988ff194065333d16bc5cf649872d9cdb"
+                "reference": "76e46335014860eec1aa5a724799a00a2e47cc85"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/90d087e988ff194065333d16bc5cf649872d9cdb",
-                "reference": "90d087e988ff194065333d16bc5cf649872d9cdb",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/76e46335014860eec1aa5a724799a00a2e47cc85",
+                "reference": "76e46335014860eec1aa5a724799a00a2e47cc85",
                 "shasum": ""
             },
             "require": {
@@ -64,7 +64,7 @@
             "support": {
                 "irc": "irc://irc.freenode.org/composer",
                 "issues": "https://github.com/composer/ca-bundle/issues",
-                "source": "https://github.com/composer/ca-bundle/tree/1.3.6"
+                "source": "https://github.com/composer/ca-bundle/tree/1.3.7"
             },
             "funding": [
                 {
@@ -80,7 +80,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-06-06T12:02:59+00:00"
+            "time": "2023-08-30T09:31:38+00:00"
         },
         {
             "name": "geoip2/geoip2",
@@ -302,20 +302,21 @@
         },
         {
             "name": "tronovav/geoip2-update",
-            "version": "v2.1.24",
+            "version": "v2.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tronovav/geoip2-update.git",
-                "reference": "6b91582eb11d4c39cfe66b3178ac0a6c67839cf9"
+                "reference": "60dc374c21e97ca16cadfbb418a4bbd6045b581e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tronovav/geoip2-update/zipball/6b91582eb11d4c39cfe66b3178ac0a6c67839cf9",
-                "reference": "6b91582eb11d4c39cfe66b3178ac0a6c67839cf9",
+                "url": "https://api.github.com/repos/tronovav/geoip2-update/zipball/60dc374c21e97ca16cadfbb418a4bbd6045b581e",
+                "reference": "60dc374c21e97ca16cadfbb418a4bbd6045b581e",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
+                "ext-json": "*",
                 "php": ">=5.3"
             },
             "suggest": {
@@ -348,19 +349,9 @@
             "support": {
                 "email": "newtronov@gmail.com",
                 "issues": "https://github.com/tronovav/geoip2-update/issues",
-                "source": "https://github.com/tronovav/geoip2-update/tree/v2.1.24"
+                "source": "https://github.com/tronovav/geoip2-update/tree/v2.2.4"
             },
-            "funding": [
-                {
-                    "url": "https://donate.stream/tronovav",
-                    "type": "other"
-                },
-                {
-                    "url": "https://yoomoney.ru/to/410016198845596",
-                    "type": "other"
-                }
-            ],
-            "time": "2023-03-13T11:43:07+00:00"
+            "time": "2023-09-21T16:52:07+00:00"
         }
     ],
     "packages-dev": [],
