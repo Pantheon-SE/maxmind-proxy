@@ -26,9 +26,12 @@
     <!-- Meta Tags Generated with https://metatags.io -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-arc"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-geometryutil@0.10.2/src/leaflet.geometryutil.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-arc@1.0.2/bin/leaflet-arc.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-polylineoffset@1.1.1/leaflet.polylineoffset.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-arrowheads@1.4.0/src/leaflet-arrowheads.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -237,11 +240,18 @@
         }
 
         /**
-         * Get a random color.
+         * Get a color.
          */
-        function getRandomColor() {
-            const colors = ["#174EA6", "#A50E0E", "#E37400", "#0D652D", "#202124", "#9AA0A6"];
-            return colors[Math.floor(Math.random() * colors.length)];
+        function getColorByIndex(index) {
+            const colors = [
+                "#FF0000", "#00cc00", "#0000FF", "#00CCCC", "#CC00CC",
+                "#FFFF00", "#FF7F00", "#7FFF00", "#00FF7F", "#007FFF",
+                "#7F00FF", "#FF007F", "#7F7F7F", "#FF7F7F", "#7FFF7F",
+                "#7F7FFF", "#7FFFFF", "#FF7FFF", "#FFFF7F", "#C0C0C0"
+            ];
+
+            // Use the modulus operator to wrap around if index is out of bounds
+            return colors[index % colors.length];
         }
 
         /**
@@ -259,8 +269,8 @@
                         Math.abs(existing[1] - newLatLng[1]) < 0.01
                     ) {
                         // Adjust by a small fraction
-                        newLatLng[0] += 0.05;
-                        newLatLng[1] += 0.05;
+                        newLatLng[0] += 0.2;
+                        newLatLng[1] += 0.2;
                         adjusted = true;
                     }
                 }
@@ -395,7 +405,7 @@
 
                 document.getElementById("host-cards").innerHTML += cardTemplate;
 
-                const locColor = getRandomColor();
+                const locColor = getColorByIndex(index);
                 if (location?.latitude && location?.longitude) {
                     let latLng = [parseFloat(location.latitude), parseFloat(location.longitude)];
                     latLng = adjustLatLng(latLng, existingMarkers); // Adjust the position if too close to another marker
@@ -461,11 +471,14 @@
                             parseFloat(previousLoc.longitude),
                         ];
 
-                        L.Polyline.Arc(previousLatLng, latLng, {
+                        let polyline = L.Polyline.Arc(previousLatLng, latLng, {
                             color: locColor,
-                            weight: 2,
-                            vertices: 200,
-                        }).addTo(map);
+                            weight: 3,
+                            offset: index * 1.5
+                        });
+                        polyline.arrowheads({ frequency: 'endonly', size: '15px' });
+                        polyline.addTo(map);
+
                     }
                 }
             });
