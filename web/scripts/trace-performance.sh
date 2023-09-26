@@ -17,9 +17,9 @@ else
     echo "Running mtr for $HOSTNAME..."
     sudo mtr "$HOSTNAME" -jn > "$MTR_FILE"
     
-    # Check the exit status of mtr. If it failed, inform the user and exit the script
-    if [[ $? -ne 0 ]]; then
-        echo "Error: mtr failed for $HOSTNAME. Please check the hostname or your network connection."
+    # Check if mtr was successful
+    if [ $? -ne 0 ]; then
+        echo "Error running mtr. Exiting."
         exit 1
     fi
     
