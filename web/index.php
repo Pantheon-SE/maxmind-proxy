@@ -112,15 +112,15 @@ Flight::route('POST|GET /hostname', function () {
 /**
  * MTR page routing.
  */
-Flight::route('POST|GET /mtr', function () {
-    Flight::render('mtr.php');
+Flight::route('POST|GET /tracer', function () {
+    Flight::render('tracer.php');
     exit();
 });
 
 /**
  * Get script text.
  */
-Flight::route('/mtr-script', function () {
+Flight::route('/tracer-script', function () {
     $file = 'scripts/trace-performance.sh';
 
     // Check if the file exists

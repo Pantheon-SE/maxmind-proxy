@@ -2,7 +2,28 @@
 <html>
 
 <head>
-    <title>Trace Performance</title>
+    <!-- Primary Meta Tags -->
+    <title>Tracer - Network Performance Visualizer</title>
+    <meta name="title" content="Tracer - Network Performance Visualizer" />
+    <meta name="description"
+        content="A simple web app and command line utility that visualizes network performance of traceroute." />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://maxmind.pantheon.support/tracer" />
+    <meta property="og:title" content="Tracer - Network Performance Visualizer" />
+    <meta name="author" content="Kyle Taylor">
+    <meta property="og:description"
+        content="A simple web app and command line utility that visualizes network performance of traceroute." />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://maxmind.pantheon.support/tracer" />
+    <meta property="twitter:title" content="Tracer - Network Performance Visualizer" />
+    <meta property="twitter:description"
+        content="A simple web app and command line utility that visualizes network performance of traceroute." />
+
+    <!-- Meta Tags Generated with https://metatags.io -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
@@ -13,12 +34,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/tracer/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/tracer/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/tracer/favicon-16x16.png">
+    <link rel="manifest" href="/icons/tracer/site.webmanifest">
+    <link rel="mask-icon" href="/icons/tracer/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/icons/tracer/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/icons/tracer/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
         <div class="container">
-            <a class="navbar-brand" href="#">Trace Performance</a>
+            <a class="navbar-brand" href="#">Tracer</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -41,10 +71,10 @@
         <div class="px-4 py-5 my-5 text-center">
             <h1 class="display-5 fw-bold text-body-emphasis">Trace Performance</h1>
             <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">Trace Performance is a simple web app and command line utility that visualizes your
-                    traceroute to a host
-                    using data provided by your computer to give an accurate representation
-                    of end user experience vs running from a cloud environment.
+                <p class="lead mb-4">
+                    Tracer is a simple web app and command line utility that visualizes the performance of network
+                    requests to a host using data provided by your computer to give an accurate
+                    representation of end user experience vs running in a cloud environment.
                 </p>
                 <form class="form-card card-sm" id="get-code">
                     <div class="d-grid d-sm-flex justify-content-sm-center">
@@ -64,14 +94,19 @@
         <hr>
         <h4 class="mb-3"><small id="hostname-title" style="font-weight: normal;"></small>
         </h4>
-        <div class="row row-cols-1 row-cols-md-2">
+        <div class="row row-cols-1 row-cols-md-2 mb-2">
             <div class="col" id="host-cards"></div>
             <div class="col">
-                <div id="map" style="height: 450px"></div>
+                <div class="card">
+                    <div class="card-header">Hop Map</div>
+                    <div class="card-body">
+                        <div id="map" style="height: 450px"></div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <table id="mtrTable" class="table">
+        <div class="row mb-2">
+            <table id="mtrTable" class="table table-responsive">
                 <thead class="table-dark">
                     <tr>
                         <th>Step</th>
@@ -96,7 +131,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <p>Trace Performance is inspired by traceroute-online.com as a way to visualize real traceroute
+                        <p>Tracer is inspired by traceroute-online.com as a way to visualize real traceroute
                             performance from an end client using the <code>mtr</code> utility. Running locally,
                             <code>mtr</code> will run a performant traceroute between the end client and destination,
                             then open a URL with the encoded JSON output to be parsed.
@@ -105,7 +140,7 @@
                             itself to get a more realistic performance than a cloud server, often with limited
                             geographic availability.</p>
 
-                        <p>Trace Performance needs the <code>mtr</code> utility to run. If you do not have it installed,
+                        <p>Tracer needs the <code>mtr</code> utility to run. If you do not have it installed,
                             you can install on macOS using homebrew.</p>
                         <p>
                             <code class="bg-dark d-block p-3">brew instal mtr</code>
@@ -115,7 +150,7 @@
                         </p>
                         <p>
                             <code
-                                class="bg-dark d-block p-3">bash <(curl -fsSL https://maxmind.pantheon.support/mtr-script) $hostname</code>
+                                class="bg-dark d-block p-3">bash <(curl -fsSL https://maxmind.pantheon.support/tracer-script) $hostname</code>
                         </p>
                     </div>
                 </div>
@@ -133,7 +168,7 @@
                             password as <code>mtr</code> requires <code>sudo</code> to run.</p>
                         <p>
                             <code id="code-snippet"
-                                class="bg-dark d-block p-3">bash <(curl -fsSL https://maxmind.pantheon.support/mtr-script) $hostname</code>
+                                class="bg-dark d-block p-3">bash <(curl -fsSL https://maxmind.pantheon.support/tracer-script) $hostname</code>
                         </p>
                     </div>
                 </div>
@@ -277,7 +312,7 @@
 
                 let inputValue = document.getElementById("target").value.trim();  // Get the value from the input
                 inputValue = sanitizeHostname(inputValue);
-                document.getElementById('code-snippet').innerHTML = `bash <(curl -fsSL https://maxmind.pantheon.support/mtr-script) ${inputValue}`;
+                document.getElementById('code-snippet').innerHTML = `bash <(curl -fsSL https://maxmind.pantheon.support/tracer-script) ${inputValue}`;
                 const codeModal = new bootstrap.Modal('#codeModal');
                 codeModal.show();
 
@@ -324,14 +359,35 @@
                 const cardTemplate = `<div class="card mb-3">
                     <div class="card-header">${location.autonomous_system_organization} (<a href="https://ipinfo.io/${asn}" target="_blank">${asn}</a>) <span style="float: right;">${getFlagEmoji(location.country_iso)}</span></div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-sm-4 text-left">
-                                <p>${location.Avg}<br><small>Avg Response</small></p>
+                        <div class="row row-cols-2 g-4 d-flex">
+                            <div class=" flex-fill">
+                                <div><p class="mb-0"><span class="fw-bold">${location.hostname}</span><br><small>Hostname</small></p></div>
                             </div>
-                            <div class="col-sm-8">
-                                <p><strong>Host Found</strong><br>
-                                    ${location.hostname}
-                                </p>
+                            <div class=" flex-fill">
+                                <div><p class="mb-0"><span class="fw-bold">${location.host}</span><br><small>IP Address</small></p></div>
+                            </div>
+                        </div>
+                        <div class="row row-cols-3 g-4">
+                            <div class="col d-flex align-items-start">
+                                <div>
+                                    <p class="mb-0">
+                                    <span class="fw-bold">${location.Avg}</span><br><small>Average (ms)</small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col d-flex align-items-end">
+                                <div>
+                                    <p class="mb-0">
+                                    <span class="fw-bold">${location.Best}</span><br><small>Best (ms)</small>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col d-flex align-items-start">
+                                <div>
+                                    <p class="mb-0">
+                                    <span class="fw-bold">${location.Wrst}</span><br><small>Worst (ms)</small>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

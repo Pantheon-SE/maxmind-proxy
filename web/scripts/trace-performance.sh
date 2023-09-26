@@ -8,7 +8,7 @@ fi
 
 # Get the hostname as argument
 HOSTNAME=$1
-MTR_FILE="/tmp/${HOSTNAME}_mtr.json"
+MTR_FILE="/tmp/${HOSTNAME}_tracer.json"
 
 # Check if MTR file already exists
 if [[ -f $MTR_FILE ]]; then
@@ -29,7 +29,7 @@ fi
 # Convert the JSON file to a JSON string and then encode it in a URL-friendly way
 encodedData=$(base64 < "$MTR_FILE" | tr -d '\n')
 
-URL=$(echo "https://maxmind.pantheon.support/mtr?data=$encodedData")
+URL=$(echo "https://maxmind.pantheon.support/tracer?data=$encodedData")
 
 # Provide the user with the URL
 echo "Open the following URL to view the map: $URL"
