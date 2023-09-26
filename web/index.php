@@ -6,11 +6,11 @@ use MaxmindPantheon\IPLookup;
 use flight\net\Request;
 
 // Check if IP is supplied.
-Flight::before('start', function(){
+Flight::before('start', function () {
     $request = Flight::request();
     $ip = get_ip($request);
     $url_parts = parse_url($request->url);
-    if (empty($ip) && $url_parts['path'] !== '/') {
+    if (empty($ip) && in_array($url_parts['path'], ['/asn', '/city', '/country', '/datastudio'])) {
         Flight::json(['error' => 'No IP argument provided. Please provide an IP address.'], 500);
         exit();
     }
@@ -92,12 +92,56 @@ Flight::route('POST|GET /datastudio', function () {
     }
 });
 
+/**
+ * Get hostname by IP
+ */
+Flight::route('POST|GET /hostname', function () {
+    $ip = get_ip(Flight::request());
+    $hostname = gethostbyaddr($ip);
+    try {
+        $etag = base64_encode('hostname' . $ip);
+        Flight::etag($etag);
+        Flight::json(['hostname' => $hostname]);
+    } catch (Exception $e) {
+        header_remove('cache-control');
+        Flight::json(['error' => $e->getMessage()]);
+        exit();
+    }
+});
+
+/**
+ * MTR page routing.
+ */
+Flight::route('POST|GET /mtr', function () {
+    Flight::render('mtr.php');
+    exit();
+});
+
+/**
+ * Get script text.
+ */
+Flight::route('/mtr-script', function () {
+    $file = 'scripts/trace-performance.sh';
+
+    // Check if the file exists
+    if (!file_exists($file)) {
+        die('File not found');
+    }
+
+    // Set the Content-Type to text/plain to display plain text
+    header('Content-Type: text/plain');
+    readfile($file);
+});
+
+
 Flight::route('/*', function () {
     $protocol = 'http://';
-    if (isset($_SERVER['HTTPS']) &&
+    if (
+        isset($_SERVER['HTTPS']) &&
         ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||
         isset($_SERVER['HTTP_X_FORWARDED_PROTO']) &&
-        $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https'
+    ) {
         $protocol = 'https://';
     }
     Flight::render('swagger.php', ['url' => $protocol . $_SERVER['HTTP_HOST']]);
@@ -109,7 +153,7 @@ Flight::route('/*', function () {
  */
 function get_ip(Request $request): ?string
 {
-    return ($request->method == 'POST') ? $request->data['ip']: $request->query['ip'];
+    return ($request->method == 'POST') ? $request->data['ip'] : $request->query['ip'];
 }
 
 Flight::start();
