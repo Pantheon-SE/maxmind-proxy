@@ -115,7 +115,7 @@
                         </p>
                         <p>
                             <code
-                                class="bg-dark d-block p-3">curl -fsSL https://maxmind.pantheon.support/mtr-script $hostname | bash</code>
+                                class="bg-dark d-block p-3">bash <(curl -fsSL https://maxmind.pantheon.support/mtr-script) $hostname</code>
                         </p>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                             password as <code>mtr</code> requires <code>sudo</code> to run.</p>
                         <p>
                             <code id="code-snippet"
-                                class="bg-dark d-block p-3">curl -fsSL https://maxmind.pantheon.support/mtr-script $hostname | bash</code>
+                                class="bg-dark d-block p-3">bash <(curl -fsSL https://maxmind.pantheon.support/mtr-script) $hostname</code>
                         </p>
                     </div>
                 </div>
@@ -277,7 +277,7 @@
 
                 let inputValue = document.getElementById("target").value.trim();  // Get the value from the input
                 inputValue = sanitizeHostname(inputValue);
-                document.getElementById('code-snippet').innerHTML = `curl -fsSL https://maxmind.pantheon.support/mtr-script ${inputValue} | bash`;
+                document.getElementById('code-snippet').innerHTML = `bash <(curl -fsSL https://maxmind.pantheon.support/mtr-script) ${inputValue}`;
                 const codeModal = new bootstrap.Modal('#codeModal');
                 codeModal.show();
 
